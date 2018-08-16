@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="console-backstage-node" />
+        <module name="console-node" />
+        <module name="db-control-node" />
+        <module name="manager-consumer-node" />
+        <module name="manager-node" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="console-backstage-node" target="1.7" />
+      <module name="console-node" target="1.7" />
+      <module name="db-control-node" target="1.7" />
+      <module name="manager-consumer-node" target="1.7" />
+      <module name="manager-node" target="1.7" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

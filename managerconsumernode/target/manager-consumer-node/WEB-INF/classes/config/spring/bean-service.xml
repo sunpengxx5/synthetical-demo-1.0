@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--Config bean-->
+    <bean id="dbServiceConfig" class="com.huawei.configbean.DbServicesConfigBean">
+        <property name="hostAndPort"  value="${hostAndPort}"/>
+        <property name="querySimpleUserInfoMethod"  value="${querySimpleUserInfo}"/>
+        <property name="queryUserDetailInfoByIdMethod"  value="${queryUserDetailInfoById}"/>
+        <property name="addUserMethod"  value="${addUser}"/>
+        <property name="queryGoodsDetailMethod"  value="${queryGoodsDetail}"/>
+        <property name="queryGoodsListMethod"  value="${queryGoodsList}"/>
+        <property name="queryOrdersListMethod"  value="${queryOrdersList}"/>
+        <property name="payMethod"  value="${pay}"/>
+        <property name="batchAddPendingPaymentMethod"  value="${batchAddPendingPayment}"/>
+        <property name="queryPendingPaymentMethod"  value="${queryPendingPayment}"/>
+        <property name="payPendingPaymentMethod"  value="${payPendingPayment}"/>
+
+    </bean>
+    <!-- 定义service -->
+
+    <!--Http client Factory-->
+    <bean id="httpClientFactory" class="org.springframework.http.client.SimpleClientHttpRequestFactory">
+        <property name="connectTimeout"  value="10000"/>
+        <property name="readTimeout"  value="60000"/>
+    </bean>
+
+    <!--RestTemplate-->
+    <bean id="restTemplate" class="org.springframework.web.client.RestTemplate">
+        <constructor-arg ref="httpClientFactory"/>
+    </bean>
+
+
+    <bean id="kafkaConfigBean" class="com.huawei.configbean.KafkaConfigBean">
+        <!--Common param-->
+        <property name="topic" value="${topic}"/>
+        <property name="bootstrapServers" value="${bootstrap.servers}" />
+        <property name="sslTruststorePassword" value="${ssl.truststore.password}" />
+        <property name="securityProtocol" value="${security.protocol}" />
+        <property name="saslMechanism" value="${sasl.mechanism}" />
+        <!--Produce-->
+        <property name="acks" value="${acks}" />
+        <property name="retries" value="${retries}" />
+        <property name="batchSize" value="${batch.size}" />
+        <property name="bufferMemory" value="${buffer.memory}" />
+        <property name="keySerializer" value="${key.serializer}" />
+        <property name="valueSerializer" value="${value.serializer}" />
+        <property name="msgCount" value="${msg.count}" />
+        <property name="produceCount" value="${produce.count}" />
+        <property name="msgSize" value="${msg.size}" />
+        <!--Consume-->
+        <property name="groupId" value="${group.id}"/>
+        <property name="keyDeserializer" value="${key.deserializer}" />
+        <property name="valueDeserializer" value="${value.deserializer}" />
+        <property name="autoOffsetReset" value="${auto.offset.reset}" />
+        <property name="enableAutoCommit" value="${enable.auto.commit}" />
+        <property name="connectionsMaxIdleMs" value="${connections.max.idle.ms}" />
+        <property name="maxPollRecords" value="${max.poll.records}"/>
+        <property name="heartbeatIntervalMs" value="${heartbeat.interval.ms}" />
+        <property name="sessionTimeoutMs" value="${session.timeout.ms}"/>
+
+    </bean>
+
+    <bean id="consumerManager" class="com.huawei.manager.KafkaManager" init-method="initKafkaClient">
+        <property name="kafkaConfigBean" ref="kafkaConfigBean"/>
+    </bean>
+
+</beans>

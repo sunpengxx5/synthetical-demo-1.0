@@ -1,0 +1,10 @@
+.idea/
+logs/
+target/classes
+target/generated-sources
+target/generated-test-sources
+target/test-classes
+target/manager-consumer-node.war
+target/maven-archiver/
+target/maven-status/
+target/surefire-reports/

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huawei.dao.mapper.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.huawei.projo.User" >
+    <id column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="user_pwd" property="userPwd" jdbcType="VARCHAR" />
+    <result column="user_balance" property="userBalance" jdbcType="INTEGER" />
+    <result column="user_sex" property="userSex" jdbcType="VARCHAR" />
+    <result column="user_level" property="userLevel" jdbcType="INTEGER" />
+    <result column="user_head_portrait_path" property="userHeadPortraitPath" jdbcType="INTEGER" />
+  </resultMap>
+
+  <select id="querySimpleUserInfoByName" resultType="com.huawei.projo.User" parameterType="String"  resultMap="BaseResultMap">
+    select user_id,user_name,user_pwd from user where user_name=#{userName}
+  </select>
+
+  <select id="queryUserDetailInfoById" resultType="com.huawei.projo.User" parameterType="long"  resultMap="BaseResultMap">
+    select user_id,user_name,user_sex,user_balance,user_level,user_head_portrait_path from user where user_id=#{user_id}
+  </select>
+
+  <insert id="addUser" parameterType="com.huawei.projo.User" >
+    insert into user (user_name,user_pwd) values(#{userName},#{userPwd})
+  </insert>
+
+  <update id="updateUserBalance">
+    update user set user_balance=user_balance-#{price} where user_id=#{userId}
+  </update>
+
+  <select id="queryUserBalance" resultType="int" parameterType="long">
+    select user_balance from user where user_id=#{userId}
+  </select>
+
+  <select id="queryUserId" resultType="long" parameterType="String">
+    select user_id from user where user_name=#{userName}
+  </select>
+
+  <insert id="addTestUser" parameterType="String">
+    insert into user (user_name,user_pwd,user_type) values(#{userName},#{userPwd},#{userType})
+  </insert>
+
+  <select id="queryUser" resultType="com.huawei.projo.User" parameterType="String" resultMap="BaseResultMap">
+    select user_id,user_name from user where user_type=#{userType} order by user_id asc
+  </select>
+
+  <delete id="cleanUser" parameterType="String">
+    delete from user where user_type=#{userType}
+  </delete>
+
+
+  <select id="queryUserCount" resultType="int" parameterType="String" >
+    select count(1) from user where user_type=#{userType}
+  </select>
+
+  <select id="queryUserMaxId" resultType="int" parameterType="String" >
+    select max(user_id) from user where user_type=#{userType}
+  </select>
+
+  <select id="queryUserMinId" resultType="int" parameterType="String" >
+    select min(user_id) from user where user_type=#{userType}
+  </select>
+
+</mapper>

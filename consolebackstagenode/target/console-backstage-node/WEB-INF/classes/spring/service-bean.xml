@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- 定义service -->
+    <!--Http client Factory-->
+    <bean id="httpClientFactory" class="org.springframework.http.client.SimpleClientHttpRequestFactory">
+        <property name="connectTimeout"  value="10000"/>
+        <property name="readTimeout"  value="60000"/>
+    </bean>
+
+    <!--RestTemplate-->
+    <bean id="restTemplate" class="org.springframework.web.client.RestTemplate">
+        <constructor-arg ref="httpClientFactory"/>
+    </bean>
+
+    <bean id="managerServicesConfigBean" class="com.huawei.configbean.ManagerServicesConfigBean">
+        <property name="managerServicesUrl" value="${managerServicesUrl}"/>
+        <property name="signInMethod"  value="${signInMethod}"/>
+        <property name="signUpMethod"  value="${signUpMethod}"/>
+        <property name="userDetailMethod"  value="${userDetailMethod}"/>
+        <property name="goodsListMethod"  value="${goodsListMethod}"/>
+        <property name="goodsDetailMethod"  value="${goodsDetailMethod}"/>
+        <property name="payMethod"  value="${payMethod}"/>
+        <property name="orderListMethod"  value="${orderListMethod}"/>
+        <property name="rushToBuyMethod"  value="${rushToBuyMethod}"/>
+    </bean>
+
+    <bean id="dbServiceConfig" class="com.huawei.configbean.DbServicesConfigBean">
+        <property name="hostAndPort"  value="${hostAndPort}"/>
+        <property name="addTestUserMethod"  value="${addTestUserMethod}"/>
+        <property name="queryTestUserMethod"  value="${queryTestUserMethod}"/>
+        <property name="cleanTestUserMethod"  value="${cleanTestUserMethod}"/>
+        <property name="queryRushToBuySuccessCountMethod"  value="${queryRushToBuySuccessCountMethod}"/>
+        <property name="queryRushToBuySuccessUserMethod"  value="${queryRushToBuySuccessUserMethod}"/>
+        <property name="queryTestUserCountMethod"  value="${queryTestUserCountMethod}"/>
+        <property name="queryGoodsListMethod"  value="${queryGoodsListMethod}"/>
+        <property name="queryTestUserIdRangeMethod"  value="${queryTestUserIdRangeMethod}"/>
+    </bean>
+
+    <bean id="prepareTestUserRunnable" class="com.huawei.runnable.PrepareTestUserRunnable"/>
+    <bean id="prepareRushToBuyGoodsRunnable" class="com.huawei.runnable.PrepareRushToBuyGoodsRunnable"/>
+
+
+</beans>

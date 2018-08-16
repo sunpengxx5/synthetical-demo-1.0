@@ -1,0 +1,7 @@
+.idea/
+logs/
+target/classes
+target/generated-sources
+target/generated-test-sources
+target/test-classes
+target/console-node.war

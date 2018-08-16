@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="console-backstage-node:war">
+    <output-path>$PROJECT_DIR$/consolebackstagenode/target</output-path>
+    <root id="archive" name="console-backstage-node.war">
+      <element id="artifact" artifact-name="console-backstage-node:war exploded" />
+    </root>
+  </artifact>
+</component>
