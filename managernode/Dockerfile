@@ -2,7 +2,7 @@ FROM tomcat:9.0
 WORKDIR /usr/local/tomcat/webapps/
 
 # DB services
-ENV dbUrl http://49.4.4.124:31021/ddmdemo
+ENV dbUrl http://49.4.4.124:31021/ddm-node
 
 # Kafka
 ENV bootstrapServers dms-kafka.cn-north-1.myhuaweicloud.com:37000

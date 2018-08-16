@@ -24,14 +24,7 @@ public class KafkaManager {
 
     private KafkaConfigBean kafkaConfigBean;
 
-    private KafkaProducer<String,String> kafkaProducer = null;
     private KafkaConsumer<String, String> kafkaConsumer = null;
-
-    private String topic = "";
-
-    public KafkaManager(){
-
-    }
 
     public void setKafkaConfigBean(KafkaConfigBean kafkaConfigBean) {
         this.kafkaConfigBean = kafkaConfigBean;
@@ -49,12 +42,6 @@ public class KafkaManager {
                 e.printStackTrace();
             }
         }
-
-        if(kafkaProducer == null){
-            Properties producerConfig = kafkaConfigBean.getProducerConfig();
-            topic = producerConfig.getProperty("topic");
-            kafkaProducer = new KafkaProducer<>(producerConfig);
-        }
     }
 
     private class ConsumerListener implements ConsumerRebalanceListener{
@@ -69,23 +56,6 @@ public class KafkaManager {
 
         }
     }
-
-
-    public boolean produceMsg(String msg){
-        boolean result = false;
-        try {
-            Future<RecordMetadata> future =
-                    kafkaProducer.send(new ProducerRecord<String, String>(topic,null, msg));
-            RecordMetadata rm = future.get();
-            result = true;
-            log.info("Succeed to send msg: " + rm.offset());
-        }catch (Exception e){
-            log.error(e);
-            e.printStackTrace();
-        }
-        return result;
-    }
-
 
     public synchronized JSONArray consumeMsg(int timeout){
         JSONArray jsonArray = new JSONArray();
@@ -106,17 +76,5 @@ public class KafkaManager {
             e.printStackTrace();
         }
         return jsonArray;
-    }
-
-    public synchronized String subscription(){
-        String result = null;
-        try {
-            Set<String> set = kafkaConsumer.subscription();
-            result = set.iterator().next();
-        }catch (Exception e){
-            log.error(e);
-            e.printStackTrace();
-        }
-        return result;
     }
 }

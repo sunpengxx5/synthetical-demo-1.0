@@ -175,17 +175,6 @@ public class ManagerService {
         return jsonObject.toJSONString();
     }
 
-    public void recordRushToBuyOrders(int timeout){
-        JSONArray jsonArray = kafkaManager.consumeMsg(timeout);
-        if( jsonArray.size() > 0 ){
-            String url = dbServicesConfigBean.getBatchAddPendingPaymentMethodUrl();
-            Map<String,Object> urlVariables = new HashMap<>();
-            urlVariables.put("pendingPayments",jsonArray.toJSONString());
-            JSONObject jsonObject = dataService.getDataFromDbService( url, urlVariables, DataService.POST_Method_TYPE);
-            log.info("recordRushToBuyOrders:" + jsonObject.toJSONString());
-        }
-    }
-
     public String pendingPayment(String userId){
         String url = dbServicesConfigBean.getQueryPendingPaymentMethodUrl(userId);
         JSONObject jsonObject;

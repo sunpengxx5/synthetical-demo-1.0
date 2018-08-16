@@ -14,19 +14,8 @@ public class ScheduledTask {
 
     private static final int timeout = 200;
 
-    private static Logger log = Logger.getLogger(ManagerService.class);
-
-    @Autowired
-    private KafkaManager kafkaManager;
-
     @Autowired
     private ManagerService managerService;
-
-    @Scheduled(fixedRate = 60000)
-    public void heartbeat(){
-        kafkaManager.produceMsg(CommonUtils.HEARTBEAT);
-        log.info(CommonUtils.HEARTBEAT);
-    }
 
     @Scheduled(fixedRate = 10)
     public void consumerTask(){

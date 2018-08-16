@@ -28,8 +28,4 @@ public class ScheduledTask {
         log.info(CommonUtils.HEARTBEAT);
     }
 
-    @Scheduled(fixedRate = 10)
-    public void consumerTask(){
-        managerService.recordRushToBuyOrders(timeout);
-    }
 }
