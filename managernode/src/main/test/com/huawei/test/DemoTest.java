@@ -114,7 +114,7 @@ public class DemoTest {
     KafkaManager kafkaManager;
     @Test
     public void testConsumer() {
-        kafkaManager.consumeMsg(200);
+//        kafkaManager.consumeMsg(200);
     }
 
 
@@ -135,11 +135,11 @@ public class DemoTest {
 
     @Test
     public void test(){
-        managerService.recordRushToBuyOrders(500);
-//        for(int i = 0;i < 200;i++){
-//            JSONObject jsonObject =new JSONObject();
-//            managerService.rushToBuy("1","1");
-//        }
+//        managerService.recordRushToBuyOrders(500);
+////        for(int i = 0;i < 200;i++){
+////            JSONObject jsonObject =new JSONObject();
+////            managerService.rushToBuy("1","1");
+////        }
     }
 
 

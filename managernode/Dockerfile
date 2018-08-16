@@ -1,5 +1,5 @@
 FROM tomcat:9.0
-WORKDIR /usr/local/tomcat/webapps/
+WORKDIR /usr/local/tomcat/webapps/ROOT
 
 # DB services
 ENV dbUrl http://49.4.4.124:31021/ddm-node
@@ -19,8 +19,9 @@ ENV redisPort 6379
 ENV redisPasswd Ddm@cloud2017
 ENV redisMaxActive 250
 
-COPY managernode/target/ $WORKDIR
-RUN sed -i "2i /usr/local/tomcat/webapps/manager-node/initDemo.sh" /usr/local/tomcat/bin/catalina.sh
-RUN chmod 777 /usr/local/tomcat/webapps/manager-node/initDemo.sh
+RUN rm -rf /usr/local/tomcat/webapps/ROOT/*
+COPY managernode/target/manager-node $WORKDIR
+RUN sed -i "2i /usr/local/tomcat/webapps/ROOT/initDemo.sh" /usr/local/tomcat/bin/catalina.sh
+RUN chmod 777 /usr/local/tomcat/webapps/ROOT/initDemo.sh
 
 CMD ["catalina.sh", "run"]
