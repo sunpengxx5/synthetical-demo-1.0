@@ -4,6 +4,7 @@ ENV dburl jdbc:mysql:loadbalance://172.31.72.198:5066,172.31.205.225:5066/db_001
 ENV dbuser ddm_001
 ENV dbpwd Ddm@cloud2017
 ENV DbConnectionMaxActive 250
+
 RUN rm -rf /usr/local/tomcat/webapps/ROOT/*
 COPY dbcontrolnode/target/db-control-node/ $WORKDIR
 RUN sed -i "2i /usr/local/tomcat/webapps/ROOT/initDemo.sh" /usr/local/tomcat/bin/catalina.sh

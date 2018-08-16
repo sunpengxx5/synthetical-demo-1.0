@@ -1,8 +1,8 @@
 FROM tomcat:9.0
-WORKDIR /usr/local/tomcat/webapps/
+WORKDIR /usr/local/tomcat/webapps/ROOT
 
 # DB services
-ENV dbUrl http://49.4.4.124:31021/ddmdemo
+ENV dbUrl http://db-control-node:8080
 
 # Kafka
 ENV bootstrapServers dms-kafka.cn-north-1.myhuaweicloud.com:37000
@@ -19,8 +19,9 @@ ENV redisPort 6379
 ENV redisPasswd Ddm@cloud2017
 ENV redisMaxActive 250
 
-COPY managerconsumernode/target/ $WORKDIR
-RUN sed -i "2i /usr/local/tomcat/webapps/manager-demo/initDemo.sh" /usr/local/tomcat/bin/catalina.sh
-RUN chmod 777 /usr/local/tomcat/webapps/manager-demo/initDemo.sh
+RUN rm -rf /usr/local/tomcat/webapps/ROOT/*
+COPY managerconsumernode/target/manager-consumer-node $WORKDIR
+RUN sed -i "2i /usr/local/tomcat/webapps/ROOT/initDemo.sh" /usr/local/tomcat/bin/catalina.sh
+RUN chmod 777 /usr/local/tomcat/webapps/ROOT/initDemo.sh
 
 CMD ["catalina.sh", "run"]
