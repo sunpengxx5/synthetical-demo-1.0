@@ -24,7 +24,7 @@ public class DataService {
     private final static String RUSH_TO_BUY_GOODS_TOKEN_QUEUE = "RushToBuyGoodsTokenList";
     private final static String RUSH_TO_BUY_GOODS_TOKEN_PREFIX = "RushToBuyGoodsToken-";
 
-    private final static int ATTEMPT_COUNT = 3;
+    private final static int ATTEMPT_COUNT = 1;
 
 
     @Autowired
@@ -99,13 +99,6 @@ public class DataService {
     }
 
     public String obtainRushToBuyToken(){
-        String token = null;
-        for(int i = 0;i < ATTEMPT_COUNT;i++) {
-            token = redisCacheManager.lRightPop(RUSH_TO_BUY_GOODS_TOKEN_QUEUE);
-            if(token != null){
-                break;
-            }
-        }
-        return token;
+        return redisCacheManager.lRightPop(RUSH_TO_BUY_GOODS_TOKEN_QUEUE);
     }
 }

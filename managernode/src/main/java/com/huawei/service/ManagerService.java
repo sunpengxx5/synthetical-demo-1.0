@@ -170,7 +170,7 @@ public class ManagerService {
         }else {
             jsonObject.put("errCode",CommonUtils.ERROR_CODE);
             jsonObject.put("resMsg",CommonUtils.FAILED);
-            log.error("Rush to buy error:Obtain token failed!");
+            log.info("Rush to buy:Token is null!");
         }
         return jsonObject.toJSONString();
     }
