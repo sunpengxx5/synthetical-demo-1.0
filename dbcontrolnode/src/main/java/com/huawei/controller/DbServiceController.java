@@ -91,10 +91,10 @@ public class DbServiceController {
         return dbServices.queryUserBalance(userId);
     }
 
-    @RequestMapping(value="v1/rest/queryGoodsCount", method = RequestMethod.POST)
+    @RequestMapping(value="v1/rest/queryGoodsCount", method = RequestMethod.GET)
     @ResponseBody
-    public String queryGoodsCount(@RequestBody Map<String, Object> param){
-        long goodsId = Long.parseLong(param.get("goodsId").toString());
+    public String queryGoodsCount( HttpServletRequest request){
+        long goodsId = Long.parseLong(request.getParameter("goodsId"));
         return dbServices.queryGoodsCount(goodsId);
     }
 }

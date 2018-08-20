@@ -143,4 +143,12 @@ public class ViewController {
         return "com/rushToBuyFailed";
     }
 
+    @RequestMapping(value="goodsCount", method = RequestMethod.GET)
+    @ResponseBody
+    public int queryGoodsCount(HttpServletRequest request){
+        String goodsId = request.getParameter("goodsId");
+        String goodsType= request.getParameter("goodsType");
+        return dataSourcesService.queryGoodsCount(goodsId,goodsType);
+    }
+
 }

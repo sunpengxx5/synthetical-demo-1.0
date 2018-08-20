@@ -12,6 +12,7 @@ public class DbServicesConfigBean {
     private String batchAddPendingPaymentMethod;
     private String queryPendingPaymentMethod;
     private String payPendingPaymentMethod;
+    private String queryGoodsCountMethod;
 
     public void setHostAndPort(String hostAndPort) {
         this.hostAndPort = hostAndPort;
@@ -96,5 +97,13 @@ public class DbServicesConfigBean {
 
     public void setPayPendingPaymentMethod(String payPendingPaymentMethod) {
         this.payPendingPaymentMethod = payPendingPaymentMethod;
+    }
+
+    public String getQueryGoodsCountMethodUrl(String goodsId) {
+        return hostAndPort + "/" + queryGoodsCountMethod + "?goodsId=" + goodsId;
+    }
+
+    public void setQueryGoodsCountMethod(String queryGoodsCountMethod) {
+        this.queryGoodsCountMethod = queryGoodsCountMethod;
     }
 }

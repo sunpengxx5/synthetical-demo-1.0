@@ -82,4 +82,12 @@ public class ManagerServiceController {
         return managerService.pendingPayment(userId);
     }
 
+    @RequestMapping(value="v1/rest/goodsCount", method = RequestMethod.GET)
+    @ResponseBody
+    public String goodsCount( HttpServletRequest request){
+        String goodsId = request.getParameter("goodsId");
+        String goodsType = request.getParameter("goodsType");
+        return managerService.queryGoodsCount(goodsId,goodsType);
+    }
+
 }

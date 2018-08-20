@@ -4,4 +4,7 @@ target/classes
 target/generated-sources
 target/generated-test-sources
 target/test-classes
+target/maven-archiver/
+target/maven-status/
+target/surefire-reports/
 target/console-node.war

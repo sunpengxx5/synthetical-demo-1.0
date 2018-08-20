@@ -134,20 +134,6 @@ public class ManagerService {
         }
         return jsonObject.toJSONString();
     }
-
-
-    public String initRushToBuyGoods(int count){
-        JSONObject jsonObject = new JSONObject();
-        if(dataService.initRushToBuyGoods(count)){
-            jsonObject.put("errCode",CommonUtils.NORMAL_CODE);
-            jsonObject.put("resMsg",CommonUtils.SUCCESS);
-        }else {
-            jsonObject.put("errCode",CommonUtils.ERROR_CODE);
-            jsonObject.put("resMsg",CommonUtils.FAILED);
-        }
-        return jsonObject.toJSONString();
-    }
-
     public String rushToBuy(String userId,String goodsId){
         JSONObject jsonObject = new JSONObject();
         String token = dataService.obtainRushToBuyToken();
@@ -182,6 +168,19 @@ public class ManagerService {
             jsonObject = JSONAnalysis.analysisDbJson(dataService.getDataFromDbService( url, DataService.GET_Method_TYPE));
         }catch (Exception e){
             jsonObject = ExceptionProcess.processException(e);
+        }
+        return jsonObject.toJSONString();
+    }
+
+    public String queryGoodsCount(String goodsId,String goodsType){
+
+        JSONObject jsonObject;
+
+        if(goodsType.equals(CommonUtils.RUSH_TO_BUY)){
+            jsonObject = dataService.queryRushToBuyGoodsCount();
+        }else {
+            String url = dbServicesConfigBean.getQueryGoodsCountMethodUrl(goodsId);
+            jsonObject = JSONAnalysis.analysisGoodsCountJson(dataService.getDataFromDbService(url, DataService.GET_Method_TYPE));
         }
         return jsonObject.toJSONString();
     }

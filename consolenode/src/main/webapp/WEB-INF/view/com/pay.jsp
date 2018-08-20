@@ -26,6 +26,12 @@
         .pay-div{
             margin-right:800px;
         }
+        .goods-count-style{
+            border: 0;
+            font-size:17px;
+            outline:none;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -79,7 +85,7 @@
                             库存数量
                         </td>
                         <td>
-                            ${goods.goodsCount}
+                            <input id="goodsCountInput" class="goods-count-style" value="加载中..." readonly="value">
                         </td>
                     </tr>
                 </table>
@@ -95,6 +101,22 @@
 </div>
 
 <script type="text/javascript">
+
+    $(function () {
+        $.ajax({
+            type: 'get',
+            url: 'goodsCount',
+            data: 'goodsId=' + ${goods.goodsId}+'&goodsType=${goods.goodsType}',
+            success: function (data) {
+                if(data == -1){
+                    $('#goodsCountInput').val("加载失败...");
+                }else {
+                    $('#goodsCountInput').val(data);
+                }
+            }
+        });
+    });
+
     function pay() {
         var userId='${sessionScope.userId}'.toString();
         if(userId != "" ){

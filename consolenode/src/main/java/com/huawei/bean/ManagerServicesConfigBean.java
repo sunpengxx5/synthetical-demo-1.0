@@ -12,6 +12,7 @@ public class ManagerServicesConfigBean {
     private String rushToBuyMethod;
     private String pendingPaymentMethod;
     private String payPendingPaymentMethod;
+    private String goodsCount;
 
     public void setManagerServicesUrl(String managerServicesUrl) {
         this.managerServicesUrl = managerServicesUrl;
@@ -95,5 +96,13 @@ public class ManagerServicesConfigBean {
 
     public void setPayPendingPaymentMethod(String payPendingPaymentMethod) {
         this.payPendingPaymentMethod = payPendingPaymentMethod;
+    }
+
+    public String getGoodsCountMethodUrl(String goodsId,String goodsType) {
+        return managerServicesUrl + "/" + goodsCount + "?goodsId=" +goodsId +"&goodsType=" + goodsType;
+    }
+
+    public void setGoodsCountMethod(String goodsCount) {
+        this.goodsCount = goodsCount;
     }
 }

@@ -145,5 +145,12 @@ public class DataSourcesService {
         return JSONAnalysis.analysisRushToBuyResponse(resultJson);
     }
 
+    public int queryGoodsCount(String goodsId,String goodsType){
+        String url = managerServicesConfigBean.getGoodsCountMethodUrl(goodsId,goodsType);
+        JSONObject jsonObject;
+        jsonObject = httpClientService.getDataFromManagerServices( url, HttpClientService.GET_Method_TYPE);
+        return JSONAnalysis.analysisGoodsCounts(jsonObject);
+    }
+
 
 }

@@ -16,15 +16,11 @@ import java.util.Map;
 public class DataService {
 
     private static Logger log = Logger.getLogger(DataService.class);
-    private final static String GOODS_DETAIL = "GoodsDetail";
 
     public final static String POST_Method_TYPE = "Post";
     public final static String GET_Method_TYPE = "Get";
 
     private final static String RUSH_TO_BUY_GOODS_TOKEN_QUEUE = "RushToBuyGoodsTokenList";
-    private final static String RUSH_TO_BUY_GOODS_TOKEN_PREFIX = "RushToBuyGoodsToken-";
-
-    private final static int ATTEMPT_COUNT = 1;
 
 
     @Autowired
@@ -79,23 +75,21 @@ public class DataService {
         }
         return jsonObject;
     }
+    public JSONObject queryRushToBuyGoodsCount(){
 
-    public boolean initRushToBuyGoods(int count){
-
-        boolean result = false;
-        DecimalFormat df = new DecimalFormat("0000");
-        try {
-            redisCacheManager.del(RUSH_TO_BUY_GOODS_TOKEN_QUEUE);
-            for(int i = 0;i < count;i++){
-                redisCacheManager.lSet(RUSH_TO_BUY_GOODS_TOKEN_QUEUE,RUSH_TO_BUY_GOODS_TOKEN_PREFIX + df.format(i));
-            }
-            result = true;
+        JSONObject jsonObject = new JSONObject();
+        long goodsCount = -1;
+        try{
+            goodsCount = redisCacheManager.lGetListSize(RUSH_TO_BUY_GOODS_TOKEN_QUEUE);
+            jsonObject.put("errCode",CommonUtils.NORMAL_CODE);
+            jsonObject.put("resMsg",goodsCount);
         }catch (Exception e){
+            jsonObject.put("errCode",CommonUtils.ERROR_CODE);
+            jsonObject.put("resMsg",-1);
             log.error(e);
             e.printStackTrace();
         }
-
-        return result;
+        return jsonObject;
     }
 
     public String obtainRushToBuyToken(){

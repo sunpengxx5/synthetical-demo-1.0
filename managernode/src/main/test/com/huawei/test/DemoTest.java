@@ -130,7 +130,7 @@ public class DemoTest {
 
     @Test
     public void testList(){
-        System.out.println(managerService.initRushToBuyGoods(5));
+//        System.out.println(managerService.initRushToBuyGoods(5,""));
     }
 
     @Test

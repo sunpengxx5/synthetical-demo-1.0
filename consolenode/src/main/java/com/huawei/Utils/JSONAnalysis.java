@@ -3,15 +3,20 @@ package com.huawei.Utils;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.huawei.projo.Goods;
-import com.huawei.projo.PendingPaymentOrders;
 import com.huawei.projo.Orders;
+import com.huawei.projo.PendingPaymentOrders;
 import com.huawei.projo.User;
+import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 public class JSONAnalysis {
+
+    private static Logger log = Logger.getLogger(JSONAnalysis.class);
+
+
     public static List<Goods> analysisGoodsList(JSONObject jsonObject){
         List<Goods> goodsList = new LinkedList<>();
         if(jsonObject != null &&  jsonObject.getString("errCode") != null &&
@@ -139,4 +144,21 @@ public class JSONAnalysis {
         }
         return pendingPaymentOrdersList;
     }
+
+    public static int analysisGoodsCounts(JSONObject resJson){
+        int result = -1;
+        if(resJson != null &&  resJson.getString("errCode") != null &&
+                resJson.getString("errCode").equals(CommonUtils.MANAGER_SERVICES_NORMAL_CODE)){
+            if(resJson.getString("resMsg") != null){
+                try {
+                    result = resJson.getIntValue("resMsg");
+                }catch (Exception e){
+                    log.error(e);
+                    e.printStackTrace();
+                }
+            }
+        }
+        return  result;
+    }
+
 }

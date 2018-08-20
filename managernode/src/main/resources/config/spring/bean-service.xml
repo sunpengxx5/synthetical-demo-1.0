@@ -22,10 +22,10 @@
         <property name="batchAddPendingPaymentMethod"  value="${batchAddPendingPayment}"/>
         <property name="queryPendingPaymentMethod"  value="${queryPendingPayment}"/>
         <property name="payPendingPaymentMethod"  value="${payPendingPayment}"/>
-
+        <property name="queryGoodsCountMethod" value="${queryGoodsCount}"/>
     </bean>
-    <!-- 定义service -->
 
+    <!-- 定义service -->
     <!--Http client Factory-->
     <bean id="httpClientFactory" class="org.springframework.http.client.SimpleClientHttpRequestFactory">
         <property name="connectTimeout"  value="10000"/>
