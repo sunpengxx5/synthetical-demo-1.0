@@ -68,7 +68,7 @@
 
     </bean>
 
-    <bean id="consumerManager" class="com.huawei.manager.KafkaManager" init-method="initKafkaClient">
+    <bean id="kafkaManager" class="com.huawei.manager.KafkaManager" init-method="initKafkaClient">
         <property name="kafkaConfigBean" ref="kafkaConfigBean"/>
     </bean>
 
