@@ -6,8 +6,8 @@ ENV dbUrl http://db-control-node:8080
 
 # Kafka
 ENV bootstrapServers dms-kafka.cn-north-1.myhuaweicloud.com:37000
-ENV topic k-0e964f1ae251477ebbfe8cd85e758ee6-0df351cc-5f98-4b78-b71b-3d41c683f55f
-ENV groupId g-271545b4-5026-432d-9ecb-5092a9f6a5fe
+ENV topic k-0e964f1ae251477ebbfe8cd85e758ee6-726b0077-9454-4c3b-9120-c25afc1ccaa8
+ENV groupId g-f4b54c5b-fa28-4998-96dc-2660b836b774
 # Kafka client
 ENV accessKey G14IYNXRHFV9ISEWHEMW
 ENV secretKey ZGaTtLs1KwcRCOlfmzFMBJ9lqbsZJoyU3Kcgr5gh
