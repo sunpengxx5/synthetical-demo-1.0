@@ -12,7 +12,7 @@
 	default-lazy-init="true">
 		
 	<bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
-		<property name="minIdle" value="1" />
+		<property name="minIdle" value="50" />
 		<property name="maxIdle" value="${redis.maxIdle}" />
 		<property name="maxTotal" value="${redis.maxActive}" />
 		<property name="maxWaitMillis" value="${redis.maxWait}" />
