@@ -13,12 +13,15 @@
 		
 	<bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
 		<property name="minIdle" value="1" />
-		<property name="testOnReturn" value="true" />
-		<property name="testWhileIdle" value="true" />
 		<property name="maxIdle" value="${redis.maxIdle}" />
 		<property name="maxTotal" value="${redis.maxActive}" />
 		<property name="maxWaitMillis" value="${redis.maxWait}" />
 		<property name="testOnBorrow" value="${redis.testOnBorrow}" />
+		<property name="testOnReturn" value="false" />
+		<property name="testWhileIdle" value="true" />
+		<property name="timeBetweenEvictionRunsMillis" value="5000"/>
+		<property name="numTestsPerEvictionRun" value="10"/>
+		<property name="minEvictableIdleTimeMillis" value="2000"/>
 		<property name="blockWhenExhausted" value="${redis.blockWhenExhausted}" />
 	</bean>
 
