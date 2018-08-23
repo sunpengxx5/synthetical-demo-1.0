@@ -10,7 +10,7 @@
 	   http://www.springframework.org/schema/context
 	   http://www.springframework.org/schema/context/spring-context.xsd"
 	default-lazy-init="true">
-		
+
 	<bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
 		<property name="minIdle" value="50" />
 		<property name="maxIdle" value="${redis.maxIdle}" />
