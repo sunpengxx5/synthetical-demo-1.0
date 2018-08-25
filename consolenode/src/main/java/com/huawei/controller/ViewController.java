@@ -14,6 +14,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.websocket.server.PathParam;
+import java.io.BufferedOutputStream;
+import java.io.FileInputStream;
+import java.io.OutputStream;
+import java.math.BigDecimal;
 import java.util.List;
 
 @Controller
@@ -150,5 +156,16 @@ public class ViewController {
         String goodsType= request.getParameter("goodsType");
         return dataSourcesService.queryGoodsCount(goodsId,goodsType);
     }
+
+    @RequestMapping(value="test", method = RequestMethod.GET)
+    public String test(){
+        return "com/test";
+    }
+
+    @RequestMapping(value = "obtainGoodsPicture", method = RequestMethod.GET)
+    public void obtainGoodsPicture(@PathParam("pictureName")String pictureName, HttpServletResponse response){
+        dataSourcesService.obtainGoodsPicture(pictureName,response);
+    }
+
 
 }

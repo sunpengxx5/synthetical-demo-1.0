@@ -87,7 +87,7 @@
         <div>
             <h3>附：</h3>
             <div class="div-left">
-                <a href="https://github.com/sunpengxx5/synthetical-demo">GitHub代码地址</a>
+                <a href="https://github.com/sunpengxx5/synthetical-demo-1.0">GitHub代码地址</a>
             </div>
         </div>
     </div>

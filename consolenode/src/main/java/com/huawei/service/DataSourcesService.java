@@ -3,15 +3,22 @@ package com.huawei.service;
 import com.alibaba.fastjson.JSONObject;
 import com.huawei.Utils.CommonUtils;
 import com.huawei.Utils.JSONAnalysis;
+import com.huawei.bean.CommonConfigBean;
 import com.huawei.bean.ManagerServicesConfigBean;
 import com.huawei.projo.Goods;
 import com.huawei.projo.PendingPaymentOrders;
 import com.huawei.projo.Orders;
 import com.huawei.projo.User;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,11 +26,16 @@ import java.util.Map;
 @Service("dataSourcesService")
 public class DataSourcesService {
 
+    private static Logger log = Logger.getLogger(DataSourcesService.class);
+
     @Autowired
     private ManagerServicesConfigBean managerServicesConfigBean;
 
     @Autowired
     private HttpClientService httpClientService;
+
+    @Autowired
+    private CommonConfigBean commonConfigBean;
 
     public List<Goods> getNorMalGoodsList(){
         String url = managerServicesConfigBean.getGoodsListMethodUrl(CommonUtils.GOODS_TYPE_NORMAL);
@@ -152,5 +164,29 @@ public class DataSourcesService {
         return JSONAnalysis.analysisGoodsCounts(jsonObject);
     }
 
-
+    public void obtainGoodsPicture(String pictureName, HttpServletResponse response){
+        FileInputStream in;
+        response.setContentType("application/octet-stream;charset=UTF-8");
+        String picturePath = commonConfigBean.getGoodsPicturePath(pictureName);
+        File file = new File(picturePath);
+        if(file.exists()) {
+            try {
+                in = new FileInputStream(picturePath);
+                int i = in.available();
+                byte[] data = new byte[i];
+                in.read(data);
+                in.close();
+                OutputStream outputStream = new BufferedOutputStream(response.getOutputStream());
+                outputStream.write(data);
+                outputStream.flush();
+                outputStream.close();
+            } catch (Exception e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+                log.error(e);
+            }
+        }else {
+            log.warn("The picture of "+ pictureName + " does not exist!");
+        }
+    }
 }

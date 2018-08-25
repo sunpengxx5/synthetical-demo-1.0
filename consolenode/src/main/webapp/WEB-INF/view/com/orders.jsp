@@ -38,7 +38,7 @@
                     <tr>
                         <td class="ordersTableStyle">${orders.ordersId}</td>
                         <td class="ordersTableStyle">
-                            <img src="${orders.goodsPicturePath}"  width="70" height="70">
+                            <img src="obtainGoodsPicture?pictureName=${orders.goodsName}.jpg"  width="70" height="70">
                         </td>
                         <td class="ordersTableStyleLong">${orders.goodsName}</td>
                         <td class="ordersTableStyle">${orders.goodsPrice}</td>

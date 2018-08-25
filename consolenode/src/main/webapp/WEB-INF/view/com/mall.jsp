@@ -31,7 +31,7 @@
         <tr>
             <td>
                 <form  id="rushToBuyFrom">
-                    <img src="${rushToBuyGoods.goodsPicturePath}"  width="400" height="400">
+                    <img src="obtainGoodsPicture?pictureName=${rushToBuyGoods.goodsName}.jpg"  width="400" height="400">
                     <input type="hidden" name="goodsId" value="${rushToBuyGoods.goodsId}">
                     <input type="hidden" name="userId" value="${sessionScope.userId}">
                     <table align="center">
@@ -61,7 +61,7 @@
         </c:if>
         <td>
             <form id="buyFrom${goods.goodsId}" action="payPage" method="post">
-                <img src="${goods.goodsPicturePath}"  width="300" height="300">
+                <img src="obtainGoodsPicture?pictureName=${goods.goodsName}.jpg"  width="300" height="300">
                 <input type="hidden" name="goodsId" value="${goods.goodsId}">
                 <table align="center">
                     <tr>

@@ -44,7 +44,7 @@
     <table align="center">
         <tr>
             <td>
-                <img src="${goods.goodsPicturePath}"  width="400" height="400">
+                <img src="obtainGoodsPicture?pictureName=${goods.goodsName}.jpg"  width="400" height="400">
             </td>
             <td>
                 <table >

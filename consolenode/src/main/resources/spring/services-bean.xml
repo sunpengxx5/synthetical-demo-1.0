@@ -40,5 +40,8 @@
         <property name="consoleBackstageHost" value="${consoleBackstageHost}"/>
         <property name="rushToBuyScene"  value="${rushToBuyScene}"/>
     </bean>
+    <bean id="commonConfigBean" class="com.huawei.bean.CommonConfigBean">
+        <property name="goodsPictureCommonPath" value="${goodsPictureCommonPath}"/>
+    </bean>
 
 </beans>

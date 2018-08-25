@@ -27,7 +27,7 @@
                     <td class="ordersTableStyle">${orders.ordersId}</td>
                     <td class="ordersTableStyle">${orders.goodsId}</td>
                     <td class="ordersTableStyle">
-                        <img src="${orders.goodsPicturePath}"  width="70" height="70">
+                        <img src="obtainGoodsPicture?pictureName=${orders.goodsName}.jpg"  width="70" height="70">
                     </td>
                     <td class="ordersTableStyle">${orders.goodsPrice}</td>
                     <td><input id="payBt" type="button" onclick="pay(${orders.goodsPrice},${orders.goodsId},${orders.ordersId})" value="支付"></td>
