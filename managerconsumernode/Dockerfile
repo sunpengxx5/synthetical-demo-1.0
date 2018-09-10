@@ -1,4 +1,4 @@
-FROM tomcat:9.0
+FROM tomcat:8.0.53-jre8
 WORKDIR /usr/local/tomcat/webapps/ROOT
 
 # DB services
